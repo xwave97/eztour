@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EzTourism</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/indexDesigne.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">EzTourism</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/direct/registration">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+    </span>
+    </div>
+</nav>
+
+<div class="container-fluid search-div">
+    <div class="row">
+        <div class="col-md-12 search-div-inner">
+            <h3>Выбери поездку совей мечты</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 search-div-inner">
+            <form method="post" action="/registration/add">
+                <select name="" id="" class="search-select">
+                    <option value="" disabled selected>Выбирите страну</option>
+                    <span th:each="item : ${list}">
+                        <option value="" th:text="${item.counryName}"></option>
+                    </span>
+                </select>
+                <select name="" id="" class="search-select">
+                    <option value="">500BYN</option>
+                    <option value="">1000BYN</option>
+                    <option value="">1500BYN</option>
+                    <option value="">2500BYN</option>
+                    <option value="">3000BYN</option>
+                </select>
+                <button type="submit" class="btn btn-primary search-btn">Поиск</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <h4 class="ml-3">Блог</h4>
+    </div>
+    <div class="row">
+            <div class="col-md-3 article-inner"  th:each="item : ${articleList}">
+                <h3 th:text="${item.articleHeader}"></h3>
+                <img th:attr="src=${item.getPhoto().getPhoto()}" class="img-fluid article-img">
+            </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 more-articles-div">
+            <button class="btn btn-secondary more-articles-btn">Больше статей</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <h3>Лучшие тур-операторы</h3>
+    </div>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td><h6>Название тур-фирмы</h6></td>
+                <td><h6>Рейтинг</h6></td>
+            </tr>
+            <tr  th:each="item: ${tourCompList}">
+
+                <td><a href="#" th:text="${item.getTourCompName()}"></a></td>
+                <td th:text="${item.getTourCompRate()}"></td>
+
+            </tr>
+        </table>
+
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 more-articles-div">
+            <button class="btn btn-secondary more-articles-btn">Показать все</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="footer-menu">
+                <h5>Туризм</h5>
+                <a href="">Туры</a>
+                <a href="">Горящие туры</a>
+                <a href="">Турфирмы</a>
+                <a href="">Визы</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="footer-menu">
+                <h5>Туризм</h5>
+                <a href="">Туры</a>
+                <a href="">Горящие туры</a>
+                <a href="">Турфирмы</a>
+                <a href="">Визы</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="footer-menu">
+                <h5>Туризм</h5>
+                <a href="">Туры</a>
+                <a href="">Горящие туры</a>
+                <a href="">Турфирмы</a>
+                <a href="">Визы</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="footer-menu">
+                <h5>Туризм</h5>
+                <a href="">Туры</a>
+                <a href="">Горящие туры</a>
+                <a href="">Турфирмы</a>
+                <a href="">Визы</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
