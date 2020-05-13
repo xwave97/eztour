@@ -20,10 +20,16 @@ public class UserService {
         return this.sessionFactory.getCurrentSession();
     }
 
-
     @Transactional
-    public List<UsersEntity> getAll(){
+    public List<UsersEntity> getAll() {
         List<UsersEntity> list = getSession().createQuery("from UsersEntity ").list();
         return list;
     }
+
+    @Transactional
+    public void add(UsersEntity entity) {
+        getSession().save(entity);
+    }
+
+
 }

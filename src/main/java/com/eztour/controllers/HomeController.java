@@ -33,7 +33,7 @@ public class HomeController {
     public String addPic(@RequestParam String photo){
         PhotosEntity entity = new PhotosEntity();
         entity.setPhotoId(1);
-        entity.setPhoto(photo);
+        entity.setPhotoName(photo);
         return "index";
     }
 

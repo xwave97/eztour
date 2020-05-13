@@ -21,11 +21,11 @@ public class PhotosEntity {
 
     @Basic
     @Column(name = "photo_path")
-    public String getPhoto() {
+    public String getPhotoName() {
         return photoName;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhotoName(String photo) {
         this.photoName = photo;
     }
 

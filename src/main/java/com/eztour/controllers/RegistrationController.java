@@ -1,39 +1,29 @@
 package com.eztour.controllers;
 
 import com.eztour.entity.UsersEntity;
-import com.eztour.service.RegService;
 import com.eztour.service.UserService;
+import com.eztour.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-//@CrossOrigin("http://localhost:4200")
-@Controller
+@CrossOrigin("http://localhost:4200")
+@RestController
 @RequestMapping(value = "/registration")
 public class RegistrationController {
 
     @Autowired
-    RegService regService;
-    @Autowired
     UserService userService;
 
+    @Autowired
+    ValidationService validationService;
 
-    @RequestMapping(value = "/add")
-    public String addUser(Model model, @RequestParam String login, String email, String password){
-        model.addAttribute("isValidLogin", true);
-        for(UsersEntity user : userService.getAll()){
-            if(user.getUserName().equals(login)) {
-                model.addAttribute("isValidLogin", false);
-                return "registration";
-            }
-        }
-        UsersEntity user = new UsersEntity();
-        user.setUserName(login);
-        user.setUserEmail(email);
-        user.setUserPassword(password);
-        regService.add(user);
-        return "index";
+    @PostMapping(value = "/add")
+    public int addUser(@RequestBody UsersEntity user) {
+        if (!validationService.checkLogin(user))
+            return 1;
+        if (!validationService.checkEmail(user))
+            return 2;
+        userService.add(user);
+        return 0;
     }
 }

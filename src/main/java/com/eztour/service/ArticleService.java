@@ -20,7 +20,6 @@ public class ArticleService {
     @Transactional
     public List<ArticlesEntity> getAll(){
         List<ArticlesEntity> list = getSession().createQuery("from ArticlesEntity ").list();
-
         return list;
     }
 

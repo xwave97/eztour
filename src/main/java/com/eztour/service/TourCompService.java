@@ -20,8 +20,14 @@ public class TourCompService {
     }
 
     @Transactional
-    public List<TourCompanyEntity> getAll(){
+    public List<TourCompanyEntity> getAll() {
         List<TourCompanyEntity> list = getSession().createQuery("from TourCompanyEntity order by tourCompRate desc ").list();
+        return list;
+    }
+
+    @Transactional
+    public List<TourCompanyEntity> getSingle(int id) {
+        List<TourCompanyEntity> list = getSession().createQuery("from TourCompanyEntity where tourCompId = " + id + "").list();
         return list;
     }
 }
