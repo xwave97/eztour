@@ -8,7 +8,8 @@ public class TourCompanyEntity {
 
     private int tourCompId;
     private String tourCompName;
-    private double tourCompRate;
+    private int tourCompLikes;
+    private int tourCompDislikes;
     private String tourCompAdress;
     private String tourCompUrl;
     private String tourCompPhoto;
@@ -35,15 +36,7 @@ public class TourCompanyEntity {
         this.tourCompName = tourCompName;
     }
 
-    @Basic
-    @Column(name = "tourcomp_rate")
-    public double getTourCompRate() {
-        return tourCompRate;
-    }
 
-    public void setTourCompRate(double tourCompRate) {
-        this.tourCompRate = tourCompRate;
-    }
 
     @Basic
     @Column(name = "tourcomp_adress")
@@ -86,5 +79,24 @@ public class TourCompanyEntity {
         this.tourCompDecription = tourCompDecription;
     }
 
+    @Basic
+    @Column(name = "tourcomp_likes")
+    public int getTourCompLikes() {
+        return tourCompLikes;
+    }
 
+    public void setTourCompLikes(int tourCompLikes) {
+        this.tourCompLikes = tourCompLikes;
+    }
+
+
+    @Basic
+    @Column(name = "tourcomp_diskikes")
+    public int getTourCompDislikes() {
+        return tourCompDislikes;
+    }
+
+    public void setTourCompDislikes(int tourCompDislikes) {
+        this.tourCompDislikes = tourCompDislikes;
+    }
 }
