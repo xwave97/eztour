@@ -2,14 +2,17 @@ package com.eztour.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "users", schema = "eztourism")
+@Table(name = "users")
 public class UsersEntity {
     private int userId;
     private String userName;
     private String userEmail;
     private String userPassword;
+
+
 
     @Id
     @Column(name = "user_id")
@@ -66,8 +69,4 @@ public class UsersEntity {
 
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, userName, userEmail, userPassword);
-    }
 }

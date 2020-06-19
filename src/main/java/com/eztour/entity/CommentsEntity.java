@@ -1,17 +1,16 @@
 package com.eztour.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "comments", schema = "eztourism", catalog = "")
+@Table(name = "comments")
 public class CommentsEntity {
     private int commentId;
     private String commentText;
-    private Integer commentLikes;
-    private Integer commentDislikes;
-    private Integer fkUserId;
-    private Integer fkArticleId;
+    private UsersEntity userId;
+    private TourCompanyEntity tourCompanyId;
 
     @Id
     @Column(name = "comment_id")
@@ -33,44 +32,25 @@ public class CommentsEntity {
         this.commentText = commentText;
     }
 
-    @Basic
-    @Column(name = "comment_likes")
-    public Integer getCommentLikes() {
-        return commentLikes;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id")
+    public UsersEntity getUserId() {
+        return userId;
     }
 
-    public void setCommentLikes(Integer commentLikes) {
-        this.commentLikes = commentLikes;
+    public void setUserId(UsersEntity userId) {
+        this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "comment_dislikes")
-    public Integer getCommentDislikes() {
-        return commentDislikes;
+    @ManyToOne
+    @JoinColumn(name = "fk_tourcomp_id", referencedColumnName = "tourcomp_id")
+    public TourCompanyEntity getTourCompanyId() {
+        return tourCompanyId;
     }
 
-    public void setCommentDislikes(Integer commentDislikes) {
-        this.commentDislikes = commentDislikes;
-    }
-
-    @Basic
-    @Column(name = "fk_user_id")
-    public Integer getFkUserId() {
-        return fkUserId;
-    }
-
-    public void setFkUserId(Integer fkUserId) {
-        this.fkUserId = fkUserId;
-    }
-
-    @Basic
-    @Column(name = "fk_article_id")
-    public Integer getFkArticleId() {
-        return fkArticleId;
-    }
-
-    public void setFkArticleId(Integer fkArticleId) {
-        this.fkArticleId = fkArticleId;
+    public void setTourCompanyId(TourCompanyEntity tourCompanyId) {
+        this.tourCompanyId = tourCompanyId;
     }
 
     @Override
@@ -80,14 +60,14 @@ public class CommentsEntity {
         CommentsEntity that = (CommentsEntity) o;
         return commentId == that.commentId &&
                 Objects.equals(commentText, that.commentText) &&
-                Objects.equals(commentLikes, that.commentLikes) &&
-                Objects.equals(commentDislikes, that.commentDislikes) &&
-                Objects.equals(fkUserId, that.fkUserId) &&
-                Objects.equals(fkArticleId, that.fkArticleId);
+
+                Objects.equals(userId, that.userId) &&
+                Objects.equals(tourCompanyId, that.tourCompanyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId, commentText, commentLikes, commentDislikes, fkUserId, fkArticleId);
+        return Objects.hash(commentId, commentText, userId, userId);
     }
+
 }

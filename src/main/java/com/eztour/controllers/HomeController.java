@@ -24,7 +24,7 @@ public class HomeController {
     public String index(Model model){
         model.addAttribute("list", countryService.getAll());
         model.addAttribute("articleList", articleService.getAll());
-        model.addAttribute("tourCompList", tourCompService.getAll());
+        model.addAttribute("tourCompList", tourCompService.getAll(null));
 //        articleService.getAll();
         return "index";
     }

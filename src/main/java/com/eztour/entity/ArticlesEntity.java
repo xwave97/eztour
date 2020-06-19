@@ -11,9 +11,7 @@ public class ArticlesEntity {
     private String articleText;
     private Integer articleLikes;
     private Integer articleDislikes;
-//    private Integer fkUserId;
-    private PhotosEntity photo;
-//    private Integer fkSectionId;
+    private String articlePhoto;
 
     @Id
     @Column(name = "article_id")
@@ -65,25 +63,7 @@ public class ArticlesEntity {
         this.articleDislikes = articleDislikes;
     }
 
-//    @Basic
-//    @Column(name = "fk_user_id")
-//    public Integer getFkUserId() {
-//        return fkUserId;
-//    }
-//
-//    public void setFkUserId(Integer fkUserId) {
-//        this.fkUserId = fkUserId;
-//    }
 
-    @ManyToOne
-    @JoinColumn(name = "fk_photo_id", referencedColumnName = "photo_id")
-    public PhotosEntity getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(PhotosEntity photo) {
-        this.photo = photo;
-    }
 
 //    @Basic
 //    @Column(name = "fk_section_id")
@@ -113,5 +93,15 @@ public class ArticlesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(articleId, articleHeader, articleText, articleLikes, articleDislikes);
+    }
+
+    @Basic
+    @Column(name = "article_photo")
+    public String getArticlePhoto() {
+            return articlePhoto;
+    }
+
+    public void setArticlePhoto(String articlePhoto) {
+        this.articlePhoto = articlePhoto;
     }
 }

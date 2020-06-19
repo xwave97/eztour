@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 @Controller
 public class FileUploadController {
 
-
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("name") String name,
                                                  @RequestParam("file") MultipartFile file){

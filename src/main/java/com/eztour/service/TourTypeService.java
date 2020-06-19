@@ -1,8 +1,9 @@
 package com.eztour.service;
 
-
+import com.eztour.dto.TourTypeDTO;
+import com.eztour.entity.CountryEntity;
+import com.eztour.entity.TourEntity;
 import com.eztour.entity.TourTypeEntity;
-import com.eztour.entity.UsersEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserService {
-
+public class TourTypeService {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -22,31 +22,21 @@ public class UserService {
     }
 
     @Transactional
-    public List<UsersEntity> getAll() {
-        List<UsersEntity> list = getSession().createQuery("from UsersEntity ").list();
+    public List<TourTypeEntity> getAll(){
+        List<TourTypeEntity> list = getSession().createQuery("from TourTypeEntity").list();
         return list;
     }
 
     @Transactional
-    public void add(UsersEntity entity) {
+    public void add(TourTypeDTO dto){
+        TourTypeEntity entity = new TourTypeEntity();
+        entity.setTourTypeName(dto.getTourTypeName());
         getSession().save(entity);
     }
 
     @Transactional
-    public UsersEntity auth(String login){
-        List<UsersEntity> list = getSession().createQuery("from UsersEntity ").list();
-        for (UsersEntity usersEntity: list){
-            if (usersEntity.getUserName().equals(login))
-                return usersEntity;
-        }
-        return null;
-    }
-
-    @Transactional
     public void delete(int id){
-        UsersEntity entity = getSession().find(UsersEntity.class, id);
+        TourTypeEntity entity = getSession().find(TourTypeEntity.class, id);
         getSession().delete(entity);
     }
-
-
 }

@@ -30,4 +30,16 @@ public class ValidationService {
         }
         return true;
     }
+
+    @Transactional
+    public boolean checkAuth(String login, String password){
+        for (UsersEntity entity: userService.getAll()){
+            if(entity.getUserName().equals(login)){
+                if (entity.getUserPassword().equals(password)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
